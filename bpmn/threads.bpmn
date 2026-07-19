@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:zeebe="http://camunda.org/schema/zeebe/1.0"
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+                  targetNamespace="http://bpmn.io/schema/bpmn">
+
+  <!-- createThread -->
+  <bpmn:process id="threads-create-thread" name="Threads Create Thread" isExecutable="true">
+    <bpmn:startEvent id="start-create-thread"/>
+    <bpmn:sequenceFlow id="sf-ct-1" sourceRef="start-create-thread" targetRef="task-create-thread"/>
+    <bpmn:serviceTask id="task-create-thread" name="Create Thread">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="com.etzhayyim.apps.threads.createThread"/>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="sf-ct-2" sourceRef="task-create-thread" targetRef="end-create-thread"/>
+    <bpmn:endEvent id="end-create-thread"/>
+  </bpmn:process>
+
+  <!-- getThread -->
+  <bpmn:process id="threads-get-thread" name="Threads Get Thread" isExecutable="true">
+    <bpmn:startEvent id="start-get-thread"/>
+    <bpmn:sequenceFlow id="sf-gt-1" sourceRef="start-get-thread" targetRef="task-get-thread"/>
+    <bpmn:serviceTask id="task-get-thread" name="Get Thread">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="com.etzhayyim.apps.threads.getThread"/>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="sf-gt-2" sourceRef="task-get-thread" targetRef="end-get-thread"/>
+    <bpmn:endEvent id="end-get-thread"/>
+  </bpmn:process>
+
+  <!-- replyThread -->
+  <bpmn:process id="threads-reply-thread" name="Threads Reply Thread" isExecutable="true">
+    <bpmn:startEvent id="start-reply-thread"/>
+    <bpmn:sequenceFlow id="sf-rt-1" sourceRef="start-reply-thread" targetRef="task-reply-thread"/>
+    <bpmn:serviceTask id="task-reply-thread" name="Reply Thread">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="com.etzhayyim.apps.threads.replyThread"/>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="sf-rt-2" sourceRef="task-reply-thread" targetRef="end-reply-thread"/>
+    <bpmn:endEvent id="end-reply-thread"/>
+  </bpmn:process>
+
+  <!-- closeThread -->
+  <bpmn:process id="threads-close-thread" name="Threads Close Thread" isExecutable="true">
+    <bpmn:startEvent id="start-close-thread"/>
+    <bpmn:sequenceFlow id="sf-clt-1" sourceRef="start-close-thread" targetRef="task-close-thread"/>
+    <bpmn:serviceTask id="task-close-thread" name="Close Thread">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="com.etzhayyim.apps.threads.closeThread"/>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="sf-clt-2" sourceRef="task-close-thread" targetRef="end-close-thread"/>
+    <bpmn:endEvent id="end-close-thread"/>
+  </bpmn:process>
+
+  <!-- listThreads -->
+  <bpmn:process id="threads-list-threads" name="Threads List Threads" isExecutable="true">
+    <bpmn:startEvent id="start-list-threads"/>
+    <bpmn:sequenceFlow id="sf-lt-1" sourceRef="start-list-threads" targetRef="task-list-threads"/>
+    <bpmn:serviceTask id="task-list-threads" name="List Threads">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="com.etzhayyim.apps.threads.listThreads"/>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="sf-lt-2" sourceRef="task-list-threads" targetRef="end-list-threads"/>
+    <bpmn:endEvent id="end-list-threads"/>
+  </bpmn:process>
+
+  <!-- searchThreads -->
+  <bpmn:process id="threads-search-threads" name="Threads Search Threads" isExecutable="true">
+    <bpmn:startEvent id="start-search-threads"/>
+    <bpmn:sequenceFlow id="sf-st-1" sourceRef="start-search-threads" targetRef="task-search-threads"/>
+    <bpmn:serviceTask id="task-search-threads" name="Search Threads">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="com.etzhayyim.apps.threads.searchThreads"/>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="sf-st-2" sourceRef="task-search-threads" targetRef="end-search-threads"/>
+    <bpmn:endEvent id="end-search-threads"/>
+  </bpmn:process>
+
+  <!-- pinThread -->
+  <bpmn:process id="threads-pin-thread" name="Threads Pin Thread" isExecutable="true">
+    <bpmn:startEvent id="start-pin-thread"/>
+    <bpmn:sequenceFlow id="sf-pt-1" sourceRef="start-pin-thread" targetRef="task-pin-thread"/>
+    <bpmn:serviceTask id="task-pin-thread" name="Pin Thread">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="com.etzhayyim.apps.threads.pinThread"/>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="sf-pt-2" sourceRef="task-pin-thread" targetRef="end-pin-thread"/>
+    <bpmn:endEvent id="end-pin-thread"/>
+  </bpmn:process>
+
+  <!-- threadStats -->
+  <bpmn:process id="threads-thread-stats" name="Threads Thread Stats" isExecutable="true">
+    <bpmn:startEvent id="start-thread-stats"/>
+    <bpmn:sequenceFlow id="sf-ts-1" sourceRef="start-thread-stats" targetRef="task-thread-stats"/>
+    <bpmn:serviceTask id="task-thread-stats" name="Thread Stats">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="com.etzhayyim.apps.threads.threadStats"/>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="sf-ts-2" sourceRef="task-thread-stats" targetRef="end-thread-stats"/>
+    <bpmn:endEvent id="end-thread-stats"/>
+  </bpmn:process>
+
+</bpmn:definitions>
